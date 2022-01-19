@@ -1,0 +1,287 @@
+body {
+    /* box-sizing: border-box; 
+    border: 1px solid black; */
+    margin: 0%;
+    background-color: Gainsboro;
+}
+
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1%;
+    margin: 0%;
+    height: 50px;
+    align-items: center;
+    font-family: "Arial",  sans-serif;
+    box-sizing: border-box;
+    border: 1px solid white;
+    background-color: White;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+}
+
+#navbar h2 {
+    font-family: "Comfortaa", cursive;
+}
+
+#user {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    font-family: "Arial", sans-serif;
+}
+
+#user a {
+    display: flex;
+    align-items: center;
+    margin-right: 10%;
+}
+
+
+aside {
+    position: fixed;
+    width: 30vw;
+    right: 0;
+    top: 50px;
+    height: 100vh;
+    font-family: "Arial", sans-serif;
+    /* padding: 0%; */
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+#pic_user {
+    width: 100%;
+    font-size: 30px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    font-family: "Comfortaa", cursive;
+}
+
+.image1 {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 3%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#suggested {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 500px;
+    padding: 1%;
+}
+
+#suggested h2 {
+    margin-left: 2%;
+    color: gray;
+}
+
+.gray {
+    color: gray;
+}
+
+.account1 {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    margin-bottom: 2%;
+    margin-left: 2%;
+}
+
+#name * {
+    margin: 0px;
+}
+
+.account1 * {
+    margin-right: 5%;
+}
+
+.blue {
+    color: DarkCyan;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+#stories {
+    display: flex;
+    justify-content: flex-start;
+    background-color: white;
+    border: 1px solid white;
+    width: calc(98vw - 50vw);
+    margin: calc(50px + 1%) 1% 1% 1%;
+    font-family: "Arial", sans-serif;
+    margin-left: 100px;
+}
+
+.story {
+    margin: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: gray;
+}
+
+.st {
+    border: 3px solid Gainsboro;
+}
+
+.mainpic {
+    height: 500px;
+    border-radius: 0%;
+    width: calc(98vw - 50vw);
+}
+
+#card {
+    display: flex;
+    flex-direction: column;
+    width: calc(98vw - 50vw);
+    background-color: white;
+    border: 1px solid gray;
+    margin-left: 100px;
+    margin-bottom: 2%;
+    font-family: "Arial",  sans-serif;
+}
+
+#reaction {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1%;
+}
+
+#react {
+    display: flex;
+    flex-direction: row;
+}
+
+#react * {
+    margin-right: 10%;
+}
+
+#poster {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1%;
+    font-family: "Comfortaa", cursive;
+}
+
+#poster p {
+    font-size: 20px;
+}
+
+#likes {
+    margin-left: 1%;
+    font-weight: bold;
+    margin-bottom: -10px;
+}
+
+#caption {
+    display: flex;
+    flex-flow: row wrap;
+    margin-left: 1%;
+    align-items: center;
+}
+#caption * {
+    margin-right: 1%;
+}
+
+/* #caption a {
+    margin-top: 0px;
+    margin-bottom: 0px;
+} */
+
+#caption_user {
+    font-weight: bold;
+}
+
+#comments {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1%;
+}
+
+.comment {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.comment * {
+    margin-right: 1%;
+    margin-top: 0px;
+}
+
+#time {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: gray;
+}
+
+.comment_user {
+    font-weight: bold;
+}
+
+hr {
+    color: gray;
+    width: 100%;
+}
+
+#make_comment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+#type {
+    display: flex;
+    width: 85%;
+    align-items: center;
+}
+
+#type * {
+    margin-right: 2%;
+}
+
+#type p {
+    color: gray;
+}
+
+i {
+    font-size: 25px;
+    color: black;
+}
+
+@media only screen and (max-width: 1000px) {
+    aside {
+        display: none;
+    }
+    #card {
+        width: 75vw;
+    }
+    .mainpic {
+        width: 75vw;
+    }
+    #stories {
+        width: 75vw;
+    }
+}
