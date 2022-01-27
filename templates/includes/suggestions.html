@@ -1,0 +1,25 @@
+<aside>
+    <section id="pic_user">
+        <img src={{ user['image_url'] }} alt={{ user['username'] }} + "'s profile picture" class="image1"/>
+        <h1>{{ user['username'] }}</h1>
+    </section>
+    <section id="suggested">
+        <h2>
+            Suggestions for you
+        </h2>
+        {% for i in suggestions %}
+            <section class="account1">
+                <img src={{ i['image_url'] }} alt={{ i['username'] }} + "'s profile picture"/>
+                <section id="name">
+                    <a href="#"> 
+                        <p>{{ i['username'] }}</p>
+                    </a>
+                    <p class="gray">suggested for you</p> 
+                </section>
+                <a href="#" class="blue">
+                    follow
+                </a>
+            </section>
+        {% endfor %}
+    </section>
+</aside>

@@ -1,0 +1,10 @@
+<section id="stories">
+    {% for i in stories %}
+    <section class="story">
+        <img src={{ i['user']['image_url'] }} alt={{ i['user']['username'] }} + "'s profile picture" class="st"/>
+        <a href="#">
+            <p>{{ i['user']['username'] }}</p>
+        </a>
+    </section>
+    {% endfor %}
+</section>

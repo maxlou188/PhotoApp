@@ -1,0 +1,80 @@
+{% for i in posts %}
+    <section id="card">
+        <section id="poster">
+            <a href="#">{{ i['user']['username'] }}</a>
+            <a href="#">
+                <i class="fas fa-ellipsis-h"></i>
+            </a>
+        </section>
+        <img src={{ i['image_url'] }} alt={{ i['user']['username'] }} + "'s profile picture" class="mainpic"/>
+        <section id="reaction">
+            <section id="react">
+                <a href="#">
+                    <i class="far fa-heart"></i>
+                </a>
+                <a href="#">
+                    <i class="far fa-comment"></i>
+                </a>
+                <a href="#">
+                    <i class="far fa-paper-plane"></i>
+                </a>
+            </section>
+            <section id="save">
+                <a href="#">
+                    <i class="far fa-bookmark"></i>
+                </a>
+            </section>
+        </section>
+        <section id="likes">
+            <p>{{ i['likes'] }} likes</p>
+        </section>
+        <section id="caption">
+            <p>
+                <a href="#" id="caption_user">
+                    {{ i['user']['username'] }}
+                </a>
+                {{ i['title'] }}...
+                <a href="#" class="blue">
+                    more
+                </a>
+            </p>
+        </section>
+        <section id="comments">
+        {% if i['comments']|length > 1 %}
+            <a href="#" class="blue"> View all {{ i['comments']|length }} comments</a>
+            <section class="comment">
+                <p>
+                    <a href="#" class="comment_user">
+                        {{ i['comments'][0]['user']['username'] }}
+                    </a>
+                    {{ i['comments'][0]['text'] }}
+                </p>
+            </section>
+        {% elif i['comments']|length == 1 %}
+            <section class="comment">
+                <p>
+                    <a href="#" class="comment_user">
+                        {{ i['comments'][0]['user']['username'] }}
+                    </a>
+                    {{ i['comments'][0]['text'] }}
+                </p>
+            </section>
+        {% endif %}
+            <p id="time">
+                {{ i['display_time'] }}
+            </p>
+        </section>
+        <hr>
+        <section id="make_comment">
+            <section id="type">
+                <a href="#">
+                    <i class="far fa-smile"></i>
+                </a>
+                <a href="#">
+                    Add a comment...
+                </a>
+            </section>
+            <a href="#" class="blue">Post</a>
+        </section>
+    </section>
+{% endfor %}
