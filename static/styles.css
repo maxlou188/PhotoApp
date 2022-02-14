@@ -45,15 +45,14 @@ body {
 aside {
     position: fixed;
     width: 30vw;
-    right: 100px;
-    top: 50px;
+    right: 50px;
+    top: 100px;
     height: 100vh;
     font-family: "Arial", sans-serif;
     /* padding: 0%; */
     display: flex;
     flex-direction: column;
     align-content: flex-start;
-    margin-left: 1%;
 }
 
 #pic_user {
@@ -141,7 +140,7 @@ img {
     width: calc(98vw - 50vw);
     margin: calc(50px + 1%) 1% 1% 1%;
     font-family: "Arial", sans-serif;
-    margin-left: 11vw;
+    margin-left: 10vw;
 }
 
 .story {
@@ -171,7 +170,7 @@ img {
     width: calc(98vw - 50vw);
     background-color: white;
     border: 1px solid gray;
-    margin-left: 11vw;
+    margin-left: 10vw;
     /* margin-right: -8vw; */
     margin-bottom: 2%;
     font-family: "Arial",  sans-serif;
@@ -212,7 +211,7 @@ img {
 #likes {
     margin-left: 1%;
     font-weight: bold;
-    margin-bottom: -10px;
+    margin-bottom: -20px;
 }
 
 #caption {
@@ -245,7 +244,7 @@ img {
 }
 
 #comments > a {
-    margin-left: 5px;
+    margin-left: 10px;
     margin-bottom: 5px;
 }
 

@@ -1,5 +1,7 @@
 1. I had to make several corrections about contrast between background and text and alternative text for images. The current 48 errors
-are just links that are empty. We have not added them in the assignment yet.
+are just links that are empty. We have not added them in the assignment yet. The one alert is from redundant alternative image text.
+It's for the profile picture, I think because the username is in multiple places. But it is not similar to any other things like 
+the stories panel, which were done through the for loop.
 
 2. I think if everyone does their share, then I think most all are solvable. If every user takes a second or two to provide their
 alternative text to their image, it will make the process a lot easier as many things can be automated too. Like the suggestions panel
