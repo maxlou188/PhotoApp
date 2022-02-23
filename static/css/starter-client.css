@@ -104,7 +104,7 @@ main {
     border: solid 1px #dbdbdb;
     margin-bottom: 30px;
     background-color: #fff;
-    overflow-x: auto;
+    overflow: hidden;
 }
 .stories > div {
     margin-right: 20px;
@@ -295,13 +295,17 @@ button, input[type="submit"], input[type="reset"] {
 .modal-text {
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 .modal-user-info {
     display: flex;
-    /* border: solid 1px #dbdbdb; */
+    /* position: fixed; */
+    position: relative;
+    border: solid 1px #dbdbdb;
     background-color: white;
     align-items: center;
+    /* width: 24.2vw; */
 }
 
 .modal-user-info img{
@@ -312,12 +316,14 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 .modal-comments {
-    overflow-y: auto;
+    /* padding-top: 90px; */
 }
 
 .modal-comment {
     display: flex;
+    /* justify-content: flex-start; */
     align-items: flex-start;
+    /* align-items: center; */
     margin-right: 10px;
 }
 

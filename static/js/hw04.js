@@ -63,9 +63,9 @@ const deleteLike = (likeId, postId, elem, ) => {
     });
 };
 
-const destroyModal = postID => {
+const destroyModal = () => {
     document.querySelector('#modal-container').innerHTML = '';
-    document.getElementById(`openModal-${postID}`).focus();
+    document.getElementById("openModal").focus();
 };
 
 const showPostDetail = ev => {
@@ -93,7 +93,7 @@ const showPostDetail = ev => {
         document.getElementById("closeModal").focus();
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
-                destroyModal(postID);
+                destroyModal();
             }
         })
         });
@@ -121,7 +121,7 @@ const displayComments = (comments, postID) => {
     if (comments.length > 1) {
         result += `
             <p>
-                <button class="link" data-post-id="${ postID }" onclick="showPostDetail(event)" id="openModal-${postID}"> 
+                <button class="link" data-post-id="${ postID }" onclick="showPostDetail(event)" id="openModal"> 
                     View all ${comments.length} comments 
                 </button>
             </p>
