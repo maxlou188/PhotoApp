@@ -162,6 +162,7 @@ img {
     height: 500px;
     border-radius: 0%;
     width: calc(98vw - 50vw);
+    height: calc(40vw);
 }
 
 #card {
