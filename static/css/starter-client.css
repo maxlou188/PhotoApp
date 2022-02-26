@@ -295,17 +295,13 @@ button, input[type="submit"], input[type="reset"] {
 .modal-text {
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
 }
 
 .modal-user-info {
     display: flex;
-    /* position: fixed; */
-    position: relative;
-    border: solid 1px #dbdbdb;
+    /* border: solid 1px #dbdbdb; */
     background-color: white;
     align-items: center;
-    /* width: 24.2vw; */
 }
 
 .modal-user-info img{
@@ -316,14 +312,12 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 .modal-comments {
-    /* padding-top: 90px; */
+    overflow-y: auto;
 }
 
 .modal-comment {
     display: flex;
-    /* justify-content: flex-start; */
     align-items: flex-start;
-    /* align-items: center; */
     margin-right: 10px;
 }
 
