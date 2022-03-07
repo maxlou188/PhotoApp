@@ -4,6 +4,7 @@ from models import Bookmark, db
 import json
 from . import can_view_post
 from my_decorators import handle_db_insert_error, secure_bookmark, check_ownership_of_bookmark, is_valid_int, is_valid_int_delete
+import flask_jwt_extended
 
 # all of views folder are our rest endpoints
 # we use flask_restful, which is a flask library that helps us organize our endpoints
@@ -17,6 +18,7 @@ class BookmarksListEndpoint(Resource):
     def __init__(self, current_user):
         self.current_user = current_user
     
+    @flask_jwt_extended.jwt_required()
     def get(self):
         # Your code here
         # Goal is to only show the bookmarks that are associated with
@@ -34,6 +36,7 @@ class BookmarksListEndpoint(Resource):
         ]
         return Response(json.dumps(bookmark_list_of_dictionaries), mimetype="application/json", status=200)
 
+    @flask_jwt_extended.jwt_required()
     @is_valid_int # ordering explanation on doc
     # Handles trying to bookmark stuff you can't see own/follow
     @secure_bookmark
@@ -70,6 +73,7 @@ class BookmarkDetailEndpoint(Resource):
     def __init__(self, current_user):
         self.current_user = current_user
     
+    @flask_jwt_extended.jwt_required()
     @is_valid_int_delete
     # Check ownership, can't delete if it's not in yours
     @check_ownership_of_bookmark
@@ -94,12 +98,12 @@ def initialize_routes(api):
         BookmarksListEndpoint, 
         '/api/bookmarks', 
         '/api/bookmarks/', 
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )
 
     api.add_resource(
         BookmarkDetailEndpoint, 
         '/api/bookmarks/<id>', 
         '/api/bookmarks/<id>',
-        resource_class_kwargs={'current_user': api.app.current_user}
+        resource_class_kwargs={'current_user': flask_jwt_extended.current_user}
     )

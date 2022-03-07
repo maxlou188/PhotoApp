@@ -33,7 +33,11 @@ const createLike = (postId, elem) => {
     // can create a separate id for the like number with post id or 
     // should try using fetch right now
     fetch(`/api/posts/${ postId }/likes`, {
-        method: "POST"
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '036cde10-1164-4da8-872a-1d53a634538b'
+        }
     })
     .then(response => response.json())
     .then(data => {
@@ -160,6 +164,7 @@ const createBookmark = (postId, elem) => {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '036cde10-1164-4da8-872a-1d53a634538b'
         },
         body: JSON.stringify(bookmarkData)
     })
@@ -197,6 +202,7 @@ const postComment = ev => {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '221abc1c-4365-4d8b-b302-81b5025064a1'
             },
             body: JSON.stringify(postData)
         })
@@ -309,6 +315,7 @@ const createFollower = (userId, elem) => {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '036cde10-1164-4da8-872a-1d53a634538b'
         },
         body: JSON.stringify(postData)
     })

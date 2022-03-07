@@ -10,11 +10,19 @@ from views import bookmarks, comments, followers, following, \
     posts, profile, stories, suggestions, post_likes
 
 import flask_jwt_extended
+import decorators
+from views import authentication, token
+
+import datetime
 
 app = Flask(__name__)
 
 # Initialize JWT convenience library with the special key
 app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET')  # Change this "super secret" with something else!
+
+# expire the access token quickly
+# app.config["JWT_ACCESS_TOKEN_EXPIRES"] = datetime.timedelta(seconds=10)
+
 app.config["JWT_TOKEN_LOCATION"] = ["headers", "cookies", "json", "query_string"]
 app.config["JWT_COOKIE_SECURE"] = False
 jwt = flask_jwt_extended.JWTManager(app)
@@ -25,10 +33,15 @@ cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URL')
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False    
-
+# app.config['BASE_URL'] = '/login'
 
 db.init_app(app)
 api = Api(app)
+
+@jwt.user_lookup_loader
+def user_lookup_callback(_jwt_header, jwt_data):
+    user_id = jwt_data["sub"]
+    return User.query.filter_by(id=user_id).one_or_none()
 
 # set logged in user
 with app.app_context():
@@ -45,43 +58,35 @@ post_likes.initialize_routes(api)
 profile.initialize_routes(api)
 stories.initialize_routes(api)
 suggestions.initialize_routes(api)
+authentication.initialize_routes(app)
+token.initialize_routes(api)
 
 
 # Server-side template for the homepage:
 @app.route('/')
+@decorators.jwt_or_login
 def home():
     return render_template(
         'starter-client.html', 
-        user=app.current_user
+        user=flask_jwt_extended.current_user
     )
 
+# Updated API endpoint includes a reference to 
+# access_token and csrf token.
 @app.route('/api')
+@decorators.jwt_or_login
 def api_docs():
-    navigator = ApiNavigator(app.current_user)
+    access_token = request.cookies.get('access_token_cookie')
+    csrf = request.cookies.get('csrf_access_token')
+    navigator = ApiNavigator(flask_jwt_extended.current_user)
     return render_template(
         'api/api-docs.html', 
-        user=app.current_user,
+        user=flask_jwt_extended.current_user,  #TODO: change to flask_jwt_extended.current_user
         endpoints=navigator.get_endpoints(),
+        access_token=access_token,
+        csrf=csrf,
         url_root=request.url_root[0:-1] # trim trailing slash
     )
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        print(request.form)
-        username = request.form.get('username')
-        password = request.form.get('password')
-        # Check database
-        results = User.query.filter_by(username=username).all()
-        if len(results) == 1:
-            user=results[0]
-            print(user)
-            print('set token')
-        else:
-            return 'invalid'
-
-        print('handle authentication and token setting')
-    return render_template('login.html')
 
 # enables flask app to run using "python3 app.py"
 if __name__ == '__main__':
