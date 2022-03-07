@@ -1,3 +1,19 @@
+const getCookie = key => {
+    let name = key + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+};
+
 const story2Html = story => {
     return `
         <div>
@@ -36,7 +52,7 @@ const createLike = (postId, elem) => {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '036cde10-1164-4da8-872a-1d53a634538b'
+            'X-CSRF-TOKEN': getCookie('csrf_access_token')
         }
     })
     .then(response => response.json())
@@ -164,7 +180,7 @@ const createBookmark = (postId, elem) => {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '036cde10-1164-4da8-872a-1d53a634538b'
+            'X-CSRF-TOKEN': getCookie('csrf_access_token')
         },
         body: JSON.stringify(bookmarkData)
     })
@@ -202,7 +218,7 @@ const postComment = ev => {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '221abc1c-4365-4d8b-b302-81b5025064a1'
+                'X-CSRF-TOKEN': getCookie('csrf_access_token')
             },
             body: JSON.stringify(postData)
         })
@@ -315,7 +331,7 @@ const createFollower = (userId, elem) => {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '036cde10-1164-4da8-872a-1d53a634538b'
+            'X-CSRF-TOKEN': getCookie('csrf_access_token')
         },
         body: JSON.stringify(postData)
     })
